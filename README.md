@@ -11,16 +11,17 @@ Due to the fact, that JSON is a natural representation of data for the C family 
 
 The following XPath expression
 
-/store/book[1]/title
+```/store/book[1]/title
+```
 
 would look like
-
+```
 x.store.book[0].title
-
+```
 or
-
+```
 x['store']['book'][0]['title']
-
+```
 in Javascript, Python and PHP with a variable x holding the JSON structure. Here we observe, that the particular language usually has a fundamental XPath feature already built in.
 
 The JSONPath tool in question should …
@@ -33,28 +34,28 @@ be runtime efficient.
 JSONPath expressions always refer to a JSON structure in the same way as XPath expression are used in combination with an XML document. Since a JSON structure is usually anonymous and doesn't necessarily have a "root member object" JSONPath assumes the abstract name $ assigned to the outer level object.
 
 JSONPath expressions can use the dot–notation
-
+```
 $.store.book[0].title
-
+```
 or the bracket–notation
-
+```
 $['store']['book'][0]['title']
+```
+for input paths. Internal or output paths will always be converted to the more general bracket–notation.
 
-for input pathes. Internal or output pathes will always be converted to the more general bracket–notation.
-
-JSONPath allows the wildcard symbol * for member names and array indices. It borrows the descendant operator '..' from E4X and the array slice syntax proposal [start:end:step] from ECMASCRIPT 4.
+JSONPath allows the wildcard symbol * for member names and array indices. It borrows the descendant operator '..' from E4X and the array slice syntax proposal [start\:end\:step] from ECMASCRIPT 4.
 
 Expressions of the underlying scripting language (<expr>) can be used as an alternative to explicit names or indices as in
 
-$.store.book[(@.length-1)].title
-
+```$.store.book[(@.length-1)].title
+```
 using the symbol '@' for the current object. Filter expressions are supported via the syntax ?(<boolean expr>) as in
 
-$.store.book[?(@.price < 10)].title
-
+```$.store.book[?(@.price < 10)].title
+```
 Here is a complete overview and a side by side comparison of the JSONPath syntax elements with its XPath counterparts.
 
-XPath	JSONPath	Description
+```XPath	JSONPath	Description
 /	$	the root object/element
 .	@	the current object/element
 /	. or []	child operator
@@ -68,8 +69,8 @@ n/a	[start:end:step]	array slice operator borrowed from ES4.
 []	?()	applies a filter (script) expression.
 n/a	()	script expression, using the underlying script engine.
 ()	n/a	grouping in Xpath
-XPath has a lot more to offer (Location pathes in not abbreviated syntax, operators and functions) than listed here. Moreover there is a remarkable difference how the subscript operator works in Xpath and JSONPath.
-
+XPath has a lot more to offer (Location paths in not abbreviated syntax, operators and functions) than listed here. Moreover there is a remarkable difference how the subscript operator works in Xpath and JSONPath.
+```
 Square brackets in XPath expressions always operate on the node set resulting from the previous path fragment. Indices always start by 1.
 With JSONPath square brackets operate on the object or array addressed by the previous path fragment. Indices always start by 0.
 |2007-08-18| e3 # JSONPath examples
@@ -109,7 +110,7 @@ Let's practice JSONPath expressions by some more examples. We start with a simpl
 }
 ```
 
-XPath	JSONPath	Result
+```XPath	JSONPath	Result
 /store/book/author	$.store.book[*].author	the authors of all books in the store
 //author	$..author	all authors
 /store/*	$.store.*	all things in store, which are some books and a red bicycle.
@@ -120,11 +121,11 @@ $..book[-1:]	the last book in order.
 //book[position()<3]	$..book[0,1]
 $..book[:2]	the first two books
 //book[isbn]	$..book[?(@.isbn)]	filter all books with isbn number
-//book[price<10]	$..book[?(@.price<10)]	filter all books cheapier than 10
+//book[price<10]	$..book[?(@.price<10)]	filter all books cheaper than 10
 //*	$..*	all Elements in XML document. All members of JSON structure.
 |2007-08-22| e4 # JSONPath implementation
 JSONPath is implemented in Javascript for clientside usage and ported over to PHP for use on the server.
-
+```
 Usage
 
 All you need to do is downloading either of the files
@@ -194,6 +195,8 @@ res2:
 ```
 
 Please note, that the return value of jsonPath is an array, which is also a valid JSON structure. So you might want to apply jsonPath to the resulting structure again or use one of your favorite array methods as sort with it.
+
+Note a Perl port is available [here](https://github.com/masukomi/jsonpath-perl/)
 
 # Issues
 Currently only single quotes allowed inside of JSONPath expressions.
