@@ -44,7 +44,7 @@ $['store']['book'][0]['title']
 ```
 for input paths. Internal or output paths will always be converted to the more general bracket–notation.
 
-JSONPath allows the wildcard symbol * for member names and array indices. It borrows the descendant operator '..' from E4X and the array slice syntax proposal "[start:end:step]" from ECMASCRIPT 4.
+JSONPath allows the wildcard symbol * for member names and array indices. It borrows the descendant operator '..' from E4X and the array slice syntax proposal `[start:end:step]` from ECMASCRIPT 4.
 
 Expressions of the underlying scripting language (<expr>) can be used as an alternative to explicit names or indices as in
 
