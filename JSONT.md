@@ -1,4 +1,7 @@
 # Transforming JSON
+
+#### Portions Copyright (c) 2006 Stefan Gössner
+
 JSON is a lightweight text format for data interchange. It is often better suited for structured data than XML.
 
 A frequently requested task with JSON data is its transformation to other formats, especially to XML or HTML for further processing.
