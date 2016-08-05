@@ -1,4 +1,7 @@
 #JSONPath - XPath for JSON
+
+#### Portions Copyright (c) 2006 Stefan Gössner
+
 A frequently emphasized advantage of XML is the availability of plenty tools to analyse, transform and selectively extract data out of XML documents. XPath is one of these powerful tools.
 
 It's time to wonder, if there is a need for something like XPath4JSON and what are the problems it can solve.
