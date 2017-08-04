@@ -1,4 +1,4 @@
-#JSONPath - XPath for JSON
+# JSONPath - XPath for JSON
 
 #### Portions Copyright (c) 2006 Stefan Gössner
 
